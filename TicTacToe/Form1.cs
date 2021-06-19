@@ -4,18 +4,18 @@ using System.Windows.Forms;
 namespace TicTacToe
 {
     public partial class MainForm : Form
-    {
+    { 
         public MainForm()
         {
             InitializeComponent();
         }
-        //Declares variables to link to images
-        System.Drawing.Bitmap XImage = Properties.Resources.X;
-        System.Drawing.Bitmap OImage = Properties.Resources.O;
-
-        bool XorO = true;
-        int counter = 0;
-
+        public static class Variables
+        {
+            public static readonly System.Drawing.Image X = Properties.Resources.X;
+            public static readonly System.Drawing.Image O = Properties.Resources.O;
+            public static int counter = 0;
+        }
+       
         private void Box1_Click(object sender, EventArgs e)
         {
             ChangeToXorO(Box1);
@@ -61,14 +61,12 @@ namespace TicTacToe
             ChangeToXorO(Box9);
         }
 
-        //Clears all squares, button and variables to starting values
         private void ResetButton_Click_1(object sender, EventArgs e)
         {
 
             ForEachBox("reset");
-            XorO = true;
             WinsTextBox.Text = null;
-            counter = 0;
+            Variables.counter = 0;
         }
 
         private void ForEachBox(string edit)
@@ -92,42 +90,42 @@ namespace TicTacToe
 
         private void ChangeToXorO(PictureBox box)
         {
+
             if (box.Image == null)
             {
-                counter++;
-                if (XorO == true)
+                Variables.counter++;
+                if (Variables.counter % 2 == 0)
                 {
-                    box.Image = XImage;
-                    CheckVictory(XImage, 'X');
+                    box.Image = Variables.X;
+                    CheckVictory(Variables.X, 'X');
                 }
                 else
                 {
-                    box.Image = OImage;
-                    CheckVictory(OImage, 'O');
+                    box.Image = Variables.O;
+                    CheckVictory(Variables.O, 'O');
                 }
-                XorO = !XorO;
             }
         }
 
-        private void CheckVictory(System.Drawing.Bitmap Sym, char Victor)
+        private void CheckVictory(System.Drawing.Image Symbol, char XorO)
         {
 
-            if (VictHorizontal(Sym) == true || VictDiagonal(Sym) == true || VictVertical(Sym) == true)
+            if (VictHorizontal(Symbol) == true || VictDiagonal(Symbol) == true || VictVertical(Symbol) == true)
             {
 
-                WinsTextBox.Text = Victor + " wins!";
+                WinsTextBox.Text = XorO + " wins!";
                 ForEachBox("end");
 
             }
-            else if (counter == 9)
+            else if (Variables.counter == 9)
             {
                 WinsTextBox.Text = "Draw!";
             }
-
         }
 
-        private bool VictHorizontal(System.Drawing.Bitmap Symbol)
+        private bool VictHorizontal(System.Drawing.Image Symbol)
         {
+
             if (Box1.Image == Symbol && Box2.Image == Symbol && Box3.Image == Symbol)
             {
                 return true;
@@ -144,9 +142,10 @@ namespace TicTacToe
             {
                 return false;
             }
+
         }
 
-        private bool VictVertical(System.Drawing.Bitmap Symbol)
+        private bool VictVertical(System.Drawing.Image Symbol)
         {
             if (Box1.Image == Symbol && Box4.Image == Symbol && Box7.Image == Symbol)
             {
@@ -166,7 +165,7 @@ namespace TicTacToe
             }
         }
 
-        private bool VictDiagonal(System.Drawing.Bitmap Symbol)
+        private bool VictDiagonal(System.Drawing.Image Symbol)
         {
             if (Box1.Image == Symbol && Box5.Image == Symbol && Box9.Image == Symbol)
             {
@@ -181,5 +180,8 @@ namespace TicTacToe
                 return false;
             }
         }
+
+        
+        
     }
 }

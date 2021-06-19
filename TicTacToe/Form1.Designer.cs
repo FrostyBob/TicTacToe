@@ -41,7 +41,6 @@ namespace TicTacToe
             this.Box8 = new System.Windows.Forms.PictureBox();
             this.Box9 = new System.Windows.Forms.PictureBox();
             this.Box1 = new System.Windows.Forms.PictureBox();
-            
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.ResetButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Box2)).BeginInit();
@@ -229,7 +228,6 @@ namespace TicTacToe
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tic-Tac-Toe";
-            
             ((System.ComponentModel.ISupportInitialize)(this.Box2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Box3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Box6)).EndInit();
