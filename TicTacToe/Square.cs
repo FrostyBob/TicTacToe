@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class Square
+    public class Square
     {
         private int locX;
         private int locY;
         private char State;
 
-        Square(int aLocX, int aLocY, char aState='N')
+        Square(int aLocX, int aLocY, char aState = 'N')
         {
             locX = aLocX;
             locY = aLocY;
             State = aState;
         }
+       
     }
 }
