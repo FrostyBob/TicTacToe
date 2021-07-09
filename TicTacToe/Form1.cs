@@ -4,7 +4,7 @@ using System.Windows.Forms;
 namespace TicTacToe
 {
     public partial class MainForm : Form
-    { 
+    {
         public MainForm()
         {
             InitializeComponent();
@@ -15,50 +15,24 @@ namespace TicTacToe
             public static readonly System.Drawing.Image O = Properties.Resources.O;
             public static int counter = 0;
         }
-       
-        private void Box1_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box1);
-        }
 
-        private void Box2_Click(object sender, EventArgs e)
+        private void Box_Click(object sender, EventArgs e)
         {
-            ChangeToXorO(Box2);
-        }
-
-        private void Box3_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box3);
-        }
-
-        private void Box4_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box4);
-        }
-
-        private void Box5_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box5);
-        }
-
-        private void Box6_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box6);
-        }
-
-        private void Box7_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box7);
-        }
-
-        private void Box8_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box8);
-        }
-
-        private void Box9_Click(object sender, EventArgs e)
-        {
-            ChangeToXorO(Box9);
+            PictureBox ClickedBox = sender as PictureBox;
+            if (ClickedBox.Image == null)
+            {
+                Variables.counter++;
+                if (Variables.counter % 2 == 0)
+                {
+                    ClickedBox.Image = Variables.X;
+                    CheckVictory(Variables.X, 'X');
+                }
+                else
+                {
+                    ClickedBox.Image = Variables.O;
+                    CheckVictory(Variables.O, 'O');
+                }
+            }
         }
 
         private void ResetButton_Click_1(object sender, EventArgs e)
@@ -84,25 +58,6 @@ namespace TicTacToe
                 else if (edit == "end")
                 {
                     box.Enabled = false;
-                }
-            }
-        }
-
-        private void ChangeToXorO(PictureBox box)
-        {
-
-            if (box.Image == null)
-            {
-                Variables.counter++;
-                if (Variables.counter % 2 == 0)
-                {
-                    box.Image = Variables.X;
-                    CheckVictory(Variables.X, 'X');
-                }
-                else
-                {
-                    box.Image = Variables.O;
-                    CheckVictory(Variables.O, 'O');
                 }
             }
         }
@@ -181,7 +136,5 @@ namespace TicTacToe
             }
         }
 
-        
-        
     }
 }
